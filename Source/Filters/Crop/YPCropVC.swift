@@ -59,7 +59,8 @@ class YPCropVC: UIViewController {
                                            action: #selector(done))
         saveButton.setFont(font: YPConfig.fonts.rightBarButtonFont, forState: .normal)
         saveButton.tintColor = .ypLabel
-        v.toolbar.items = [cancelButton, flexibleSpace, saveButton]
+        v.toolbar.items = [flexibleSpace, saveButton]
+        navigationItem.rightBarButtonItem = cancelButton
     }
     
     func setupGestureRecognizers() {
@@ -76,7 +77,7 @@ class YPCropVC: UIViewController {
     
     @objc
     func cancel() {
-        navigationController?.popViewController(animated: true)
+        dismiss(animated: true, completion: nil)
     }
     
     @objc
