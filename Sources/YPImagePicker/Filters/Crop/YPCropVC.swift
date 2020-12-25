@@ -16,7 +16,7 @@ public enum YPCropType {
 class YPCropVC: UIViewController {
     
     public var didFinishCropping: ((UIImage) -> Void)?
-    
+    public var didClose: (() -> Void)?
     override var prefersStatusBarHidden: Bool { return YPConfig.hidesStatusBar }
     
     private let originalImage: UIImage
@@ -59,7 +59,8 @@ class YPCropVC: UIViewController {
                                            action: #selector(done))
         saveButton.setFont(font: YPConfig.fonts.rightBarButtonFont, forState: .normal)
         saveButton.tintColor = .ypLabel
-        v.toolbar.items = [cancelButton, flexibleSpace, saveButton]
+        v.toolbar.items = [flexibleSpace, saveButton]
+        navigationItem.rightBarButtonItem = cancelButton
     }
     
     func setupGestureRecognizers() {
@@ -76,7 +77,7 @@ class YPCropVC: UIViewController {
     
     @objc
     func cancel() {
-        navigationController?.popViewController(animated: true)
+        didClose?()
     }
     
     @objc
