@@ -53,14 +53,14 @@ class YPCropVC: UIViewController {
         
         let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
         
-        let saveButton = UIBarButtonItem(title: YPConfig.wordings.save,
+        let saveButton = UIBarButtonItem(title: YPConfig.wordings.next,
                                            style: .plain,
                                            target: self,
                                            action: #selector(done))
-        saveButton.setFont(font: YPConfig.fonts.rightBarButtonFont, forState: .normal)
-        saveButton.tintColor = .ypLabel
-        v.toolbar.items = [flexibleSpace, saveButton]
-        navigationItem.rightBarButtonItem = cancelButton
+        v.toolbar.items = [flexibleSpace, cancelButton]
+        navigationItem.rightBarButtonItem = saveButton
+        navigationItem.rightBarButtonItem?.tintColor = YPConfig.colors.tintColor
+        navigationItem.rightBarButtonItem?.setFont(font: YPConfig.fonts.rightBarButtonFont, forState: .normal)
     }
     
     func setupGestureRecognizers() {
